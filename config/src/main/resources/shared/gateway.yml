@@ -1,0 +1,33 @@
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 20000
+
+ribbon:
+  ReadTimeout: 20000
+  ConnectTimeout: 20000
+
+zuul:
+  ignoredServices: '*'
+  host:
+    connect-timeout-millis: 20000
+    socket-timeout-millis: 20000
+
+  routes:
+
+    api:
+        path: /api/**
+        serviceId: api
+        stripPrefix: false
+        sensitiveHeaders:
+
+    service:
+        path: /service/**
+        serviceId: service
+        stripPrefix: false
+        sensitiveHeaders:
+server:
+  port: 4000
